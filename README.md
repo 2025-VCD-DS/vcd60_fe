@@ -22,7 +22,7 @@
 | Framework | <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white" /> |
 | Programming Language | <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" /> |
 | Routing | <img src="https://img.shields.io/badge/APP%20ROUTER-000000?style=for-the-badge" /> |
-| Styling | <img src="https://img.shields.io/badge/EMTION-D36AC2?style=for-the-badge" /> |
+| Styling | <img src="https://img.shields.io/badge/EMOTION-D36AC2?style=for-the-badge" /> |
 | Formatting | <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" /> <img src="https://img.shields.io/badge/prettier-000000?style=for-the-badge&logo=prettier&logoColor=F7B93E" /> |
 | Package Manager | <img src="https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white" /> |
 | Bundler | <img src="https://img.shields.io/badge/webpack-black?style=for-the-badge&logo=webpack&logoColor=8DD6F9" /> |
