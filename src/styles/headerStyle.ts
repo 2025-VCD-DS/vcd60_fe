@@ -5,6 +5,9 @@ import LgVcd from '@/assets/logo/logo-vcd.svg';
 import BtMenu from '@/assets/button/bt-menu.svg';
 
 export const Container = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

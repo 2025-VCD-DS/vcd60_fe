@@ -7,6 +7,7 @@
  * <Header />
  *
  * @note
+ * - position: sticky로 상단에 고정됩니다.
  * - 로고 클릭 시 홈(/)으로 이동합니다.
  * - 모바일(767px 이하)에서는 메뉴 버튼이 표시되고, 그 외에는 바로가기 메뉴가 표시됩니다.
  * - 바로가기 메뉴: HOME, PROJECTS, DESIGNERS, GUEST BOOK (constants/shortcuts에서 관리)
