@@ -16,8 +16,6 @@
  * @author 김서윤
  */
 
-'use client';
-
 import { useRouter, usePathname } from 'next/navigation';
 import * as S from '@/app/components/shortcut/shortcutStyle';
 
