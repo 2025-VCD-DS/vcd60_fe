@@ -23,9 +23,13 @@ export const Container = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 30px;
   gap: 20px;
   cursor: pointer;
+
+  ${media.tablet} {
+    padding: 10px 22px;
+  }
 `;
 
 export const LogoDs = styled(LgDs)`
@@ -58,13 +62,11 @@ export const LogoVcd = styled(LgVcd)`
 
 export const ShortcutContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 24px 30px;
 
   ${media.tablet} {
-    padding: 4.375px 22px;
-    gap: 62.5px;
+    padding: 20.5px 22px;
   }
 
   ${media.mobile} {
@@ -74,7 +76,7 @@ export const ShortcutContainer = styled.div`
 
 export const ShortcutItems = styled.div`
   display: flex;
-  gap: 90px;
+  gap: 70px;
 
   ${media.tablet} {
     gap: 62.5px;

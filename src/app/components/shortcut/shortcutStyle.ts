@@ -16,7 +16,7 @@ export const Container = styled.div<{ $isActive: boolean }>`
     background-color: ${theme.colors.primary};
   }
 
-  ${media.tablet && media.mobile} {
+  ${media.tablet || media.mobile} {
     font-size: 15px;
     letter-spacing: -0.3px;
   }
