@@ -19,6 +19,7 @@ export const theme = {
     white: '#FFF',
     black: '#000',
     gray: '#2F353B',
+    subGray: '#878C9E',
     paleBlue: '#E8F2FF',
   },
   breakpoints,
