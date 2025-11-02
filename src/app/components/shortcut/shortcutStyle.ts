@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { media, theme } from '@/styles/theme';
 
 export const Container = styled.div<{ $isActive: boolean }>`
+  width: fit-content;
   font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
@@ -15,7 +16,7 @@ export const Container = styled.div<{ $isActive: boolean }>`
     background-color: ${theme.colors.primary};
   }
 
-  ${media.tablet} {
+  ${media.tablet && media.mobile} {
     font-size: 15px;
     letter-spacing: -0.3px;
   }

@@ -18,6 +18,7 @@ export const theme = {
     burgundyDS: '#981A45',
     white: '#FFF',
     black: '#000',
+    black70: 'rgba(0, 0, 0, 0.7)',
     gray: '#2F353B',
     subGray: '#878C9E',
     paleBlue: '#E8F2FF',
