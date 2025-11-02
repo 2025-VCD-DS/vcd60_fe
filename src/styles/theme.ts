@@ -1,3 +1,15 @@
+const breakpoints = {
+  mobile: 767,
+  tablet: 1023,
+  pc: 1024,
+};
+
+export const media = {
+  mobile: `@media (max-width: ${breakpoints.mobile}px)`,
+  tablet: `@media (max-width: ${breakpoints.tablet}px)`,
+  pc: `@media (min-width: ${breakpoints.pc}px)`,
+};
+
 export const theme = {
   colors: {
     primary: '#DF2781',
@@ -9,6 +21,8 @@ export const theme = {
     gray: '#2F353B',
     paleBlue: '#E8F2FF',
   },
+  breakpoints,
+  media,
 };
 
 export type ThemeType = typeof theme;
