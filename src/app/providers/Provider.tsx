@@ -18,7 +18,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             src={bgBackground}
             alt="background"
             fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            style={{ objectFit: 'cover', objectPosition: 'top' }}
             priority
           />
           <Overlay>{children}</Overlay>
