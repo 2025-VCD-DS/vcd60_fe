@@ -18,15 +18,13 @@ interface ProjectDetail {
 }
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  // 현재 호스트 정보
+  // 현재 호스트 정보 가져오기
   const host = (await headers()).get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   const baseUrl = `${protocol}://${host}`;
@@ -42,12 +40,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       <h1>프로젝트 상세 페이지</h1>
       <h2>{project.title}</h2>
       <p>{project.content}</p>
+
       <img src={project.workImg} alt={project.title} style={{ width: '300px', height: 'auto' }} />
+
       <div>
         <img
           src={project.designer.profile}
           alt={`${project.designer.name} 프로필`}
-          style={{ width: '80px', height: '80px' }}
+          style={{ width: '80px', height: '80px', borderRadius: '50%' }}
         />
         <h2>{project.designer.name}</h2>
         <p>이메일: {project.designer.email || '-'}</p>
