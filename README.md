@@ -44,8 +44,8 @@
 ### 🔥 Commit Message
 
 ```
-- 🎉 Init: 프로젝트 세팅
-- ✨ Feat: 새로운 기능 추가
+- 🎉 Init : 프로젝트 세팅
+- ✨ Feat : 새로운 기능 추가
 - 🐛 Fix : 버그 수정
 - 💄 Design : UI(CSS) 수정
 - ✏️ Style : 기능 수정 없는 코드 스타일 변경
@@ -55,7 +55,7 @@
 - 🔥 Del : 파일 삭제
 - ♻️ Refactor : 코드 리펙토링
 
-→  커밋유형: 설명 (#이슈번호)
+→  커밋유형 : 설명 (#이슈번호)
 ```
 
 <br>
@@ -120,9 +120,11 @@
  ┃ ┃ ┣ 📜page.tsx
  ┃ ┃ ┗ 📜pageStyle.ts
  ┃ ┣ 📂assets
+ ┃ ┣ 📂constants ← 상수 데이터
  ┃ ┣ 📂data ← 정적 데이터
  ┃ ┣ 📂lib ← 글로벌 함수 및 훅 또는 외부 api 호출 유틸(lib/api)
- ┃ ┗ 📂styles ← 글로벌 스타일
+ ┃ ┣ 📂styles ← 글로벌 스타일
+ ┃ ┗ 📂types ← 글로벌 타입
  ┣ 📜.babelrc
  ┣ 📜.gitignore
  ┣ 📜eslint.config.mjs
