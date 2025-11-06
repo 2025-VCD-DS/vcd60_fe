@@ -14,6 +14,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 0 28px;
   background-color: ${theme.colors.black};
+  z-index: 5;
 
   ${media.mobile} {
     padding: 0 20px;
@@ -29,6 +30,10 @@ export const LogoContainer = styled.div`
 
   ${media.tablet} {
     padding: 10px 22px;
+  }
+
+  ${media.mobile} {
+    padding: 10px 0;
   }
 `;
 
