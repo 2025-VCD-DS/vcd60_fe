@@ -1,124 +1,109 @@
-/** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
+import { media, theme } from '@/styles/theme';
 
 export const Container = styled.div`
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   font-family: 'Noto Sans KR', sans-serif;
+  background-color: ${theme.colors.black};
+`;
+
+export const SubContainer = styled.div`
+  width: 100%;
+  padding: 0 clamp(50px, 6vw, 120px) 45px;
+
+  ${media.mobile} {
+    padding: 0 20px 20px;
+  }
 `;
 
 export const SearchContainer = styled.div`
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  border-radius: 52px;
+  background-color: ${theme.colors.gray};
+
+  ${media.pc} {
+    height: 54px;
+    padding: 18px 8px 18px 20px;
+    margin-bottom: 45px;
+  }
+
+  ${media.tablet} {
+    height: 54px;
+    padding: 18px 8px 18px 20px;
+    margin-bottom: 35px;
+  }
+
+  ${media.mobile} {
+    height: 42px;
+    padding: 10px 8px 10px 16px;
+    margin-bottom: 25px;
+  }
 
   input {
     flex: 1;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-
-  button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #4caf50;
-    color: #fff;
+    background: none;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    color: ${theme.colors.white};
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 400;
 
-    &:hover {
-      background-color: #45a049;
+    :focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    ::placeholder {
+      color: rgba(121, 121, 121, 0.7);
+    }
+
+    ${media.tablet} {
+      font-size: 16px;
+    }
+
+    ${media.mobile} {
+      font-size: 14px;
     }
   }
-`;
-
-export const CreateContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-
-  input,
-  textarea {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
 
   button {
-    align-self: flex-start;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #2196f3;
-    color: #fff;
+    padding: 12px 19px;
+    background: ${theme.colors.black};
     border: none;
-    border-radius: 4px;
+    border-radius: 43px;
     cursor: pointer;
-
-    &:hover {
-      background-color: #1976d2;
+    color: #de0184;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: -0.494px;
+    ${media.mobile} {
+      padding: 9px 16px;
+      font-size: 14px;
     }
   }
 `;
 
 export const ListContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-export const GuestbookItem = styled.div`
-  padding: 1rem;
-  border-radius: 6px;
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-
-  p {
-    margin: 0.25rem 0;
-    line-height: 1.4;
-  }
-
-  strong {
-    color: #333;
-  }
-`;
-
-export const Pagination = styled.div`
-  display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  gap: 1rem;
+  flex-wrap: wrap;
 
-  button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    cursor: pointer;
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    &:not(:disabled):hover {
-      background-color: #f0f0f0;
-    }
+  ${media.pc} {
+    gap: clamp(30px, calc(70 * 100vw / 1905), 90px);
   }
 
-  span {
-    font-size: 1rem;
+  ${media.tablet} {
+    gap: 80px;
+  }
+
+  ${media.mobile} {
+    gap: clamp(20px, calc(43 * 100vw / 767), 43px);
   }
 `;
