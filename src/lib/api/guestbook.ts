@@ -17,7 +17,6 @@ export interface GuestbookItem {
 export interface GuestbookListResponse {
   guestbooks: GuestbookItem[];
   listSize: number;
-  totalPage: number;
   totalElements: number;
   isFirst: boolean;
   isLast: boolean;
@@ -35,13 +34,9 @@ interface ApiResponse<T> {
 
 /**
  * 방명록 조회 (GET /guestbook)
- *
- * @param page - 조회할 페이지 (0부터 시작)
- * @param size - 페이지 크기 (기본 6)
- * @returns {Promise<GuestbookListResponse>}
  */
-export async function getGuestbook(page = 0, size = 6): Promise<GuestbookListResponse> {
-  const response: ApiResponse<GuestbookListResponse> = await apiClient(`/guestbook?page=${page}&size=${size}`);
+export async function getGuestbook(): Promise<GuestbookListResponse> {
+  const response: ApiResponse<GuestbookListResponse> = await apiClient('/guestbook');
   return response.result;
 }
 
@@ -49,13 +44,11 @@ export async function getGuestbook(page = 0, size = 6): Promise<GuestbookListRes
  * 방명록 검색 (GET /guestbook/search)
  *
  * @param keyword - 검색 키워드
- * @param page - 조회할 페이지 (0부터 시작)
- * @param size - 페이지 크기 (기본 6)
  * @returns {Promise<GuestbookListResponse>}
  */
-export async function searchGuestbook(keyword: string, page = 0, size = 6): Promise<GuestbookListResponse> {
+export async function searchGuestbook(keyword: string): Promise<GuestbookListResponse> {
   const response: ApiResponse<GuestbookListResponse> = await apiClient(
-    `/guestbook/search?keyword=${encodeURIComponent(keyword)}&page=${page}&size=${size}`,
+    `/guestbook/search?keyword=${encodeURIComponent(keyword)}`,
   );
   return response.result;
 }
