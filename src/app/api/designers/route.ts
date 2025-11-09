@@ -35,6 +35,18 @@ interface Student {
   projects: Project[];
 }
 
+interface CSVRecord {
+  studentId: string;
+  name: string;
+  email: string;
+  phone: string;
+  profileImg: string;
+  agreement: string;
+  projectId: string;
+  title: string;
+  thumbnailImg: string;
+}
+
 /**
  * GET 요청 핸들러
  *
@@ -52,7 +64,7 @@ export async function GET() {
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // CSV 파싱
-    const records: any[] = parse(fileContent, {
+    const records: CSVRecord[] = parse(fileContent, {
       columns: true,
       skip_empty_lines: true,
       trim: true,

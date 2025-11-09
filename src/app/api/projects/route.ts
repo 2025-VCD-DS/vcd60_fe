@@ -3,6 +3,14 @@ import fs from 'fs';
 import path from 'path';
 import { parse } from 'csv-parse/sync';
 
+interface CSVRecord {
+  projectId: string;
+  title: string;
+  name: string;
+  thumbnailImg: string;
+  subject: string;
+}
+
 /**
  * @typedef Project
  * @property {number} id - 프로젝트 ID
@@ -46,7 +54,7 @@ export async function GET() {
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // CSV 파싱
-    const records: any[] = parse(fileContent, {
+    const records: CSVRecord[] = parse(fileContent, {
       columns: true,
       skip_empty_lines: true,
       trim: true,
@@ -68,7 +76,7 @@ export async function GET() {
           id: Number(cur['projectId']),
           title: cur['title'],
           name: cur['name'],
-          thumbnail: cur['thumbnailImg'],
+          thumbnail: cur['thumbnailImg'] || DEFAULT_WORK_IMG,
           subject: cur['subject'],
         });
 

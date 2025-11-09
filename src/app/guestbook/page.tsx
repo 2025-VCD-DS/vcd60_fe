@@ -82,7 +82,10 @@ export default function GuestbookPage() {
   };
 
   useEffect(() => {
-    fetchGuestbooks();
+    const load = async () => {
+      await fetchGuestbooks();
+    };
+    load();
   }, []);
 
   return (

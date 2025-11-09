@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, theme } from '@/styles/theme';
+import { theme } from '@/styles/theme';
 import BtClose from '@/assets/button/bt-close.svg';
 
 export const Overlay = styled.div<{ isOpen: boolean }>`

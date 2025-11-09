@@ -11,7 +11,7 @@
  * const guestbooks = await apiClient('/guestbook');
  * const searchResult = await apiClient('/guestbook/search?keyword=test');
  */
-export async function apiClient(path: string, options: RequestInit = {}): Promise<any> {
+export async function apiClient<T>(path: string, options: RequestInit = {}): Promise<T> {
   const baseUrl = process.env.NEXT_PUBLIC_GUESTBOOK_API;
   if (!baseUrl) {
     throw new Error('NEXT_PUBLIC_GUESTBOOK_API 환경변수가 설정되어 있지 않습니다.');

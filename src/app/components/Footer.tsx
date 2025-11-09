@@ -34,7 +34,7 @@ export default function Footer() {
           <S.IconInstagram onClick={handleInstagramClick} />
         </S.LeftContainer>
         <S.Text>
-          Duksung Women's University Visual Communication Design
+          Duksung Women&apos;s University Visual Communication Design
           <br />
           The 60th Graduation Exhibition
         </S.Text>

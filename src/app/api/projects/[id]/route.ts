@@ -14,6 +14,19 @@ import { parse } from 'csv-parse/sync';
  */
 export const dynamic = 'force-dynamic';
 
+interface CSVRecord {
+  studentId: string;
+  name: string;
+  email: string;
+  phone: string;
+  profileImg: string;
+  agreement: string;
+  projectId: string;
+  title: string;
+  content: string;
+  workImg: string;
+}
+
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
@@ -29,7 +42,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // CSV 파싱
-    const records: any[] = parse(fileContent, {
+    const records: CSVRecord[] = parse(fileContent, {
       columns: true,
       skip_empty_lines: true,
       trim: true,

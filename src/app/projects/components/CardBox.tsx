@@ -32,7 +32,7 @@ interface CardBoxProps {
 
 export default function CardBox({ id, title = '제목', name = '이름', thumbnail, onClick }: CardBoxProps) {
   return (
-    <S.Container onClick={onClick}>
+    <S.Container onClick={onClick} data-id={id}>
       <S.Thumbnail src={thumbnail} />
       <S.TextContainer>
         <S.Title>{title}</S.Title>
