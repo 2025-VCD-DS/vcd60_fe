@@ -67,14 +67,6 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-
-  /**
-   * @description 정적 / 서버 렌더링 모드
-   * - output: "standalone" -> 서버용 빌드
-   * - output: "export" -> 정적 사이트용
-   * - 필요에 따라 주석 해제 후 사용
-   */
-  output: 'standalone',
 };
 
 export default nextConfig;
