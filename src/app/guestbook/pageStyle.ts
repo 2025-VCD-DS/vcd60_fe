@@ -106,4 +106,11 @@ export const ListContainer = styled.div`
   ${media.mobile} {
     gap: clamp(20px, calc(43 * 100vw / 767), 43px);
   }
+
+  p {
+    font-family: Pretendard;
+    font-size: 15px;
+    font-weight: 500;
+    color: ${theme.colors.white};
+  }
 `;
