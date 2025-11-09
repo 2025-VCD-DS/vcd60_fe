@@ -78,7 +78,7 @@ export async function GET() {
 
         acc[studentId].projects.push({
           id: Number(cur['projectId']),
-          title: cur['project'],
+          title: cur['title'],
           thumbnail: cur['thumbnailImg'],
         });
 
