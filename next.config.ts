@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   /**
+   * @description Emotion SWC 설정 추가
+   * - 배포 환경에서 빌드 시 에러가 나는 문제를 해결하고자 추가함
+   * - .babelrc 없이 SWC 환경에서 빌드
+   */
+  compiler: {
+    emotion: true,
+  },
+
+  /**
    * @description 외부 이미지 도메인 허용 설정
    * - 외부 이미지 사용 시 반드시 도메인을 추가해야 Next Image 최적화 적용 가능
    * - 필요 시 배열에 도메인 입력 후 사용
