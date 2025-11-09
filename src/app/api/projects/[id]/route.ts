@@ -55,7 +55,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     // 응답 데이터 구조화
     const response = {
       projectId,
-      title: first.project,
+      title: first.title,
       content: first.content,
       workImg: first.workImg,
       designer,

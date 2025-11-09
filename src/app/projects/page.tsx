@@ -1,12 +1,21 @@
-import React from 'react';
-import { headers } from 'next/headers';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import * as S from '@/app/projects/pageStyle';
+import DecorateLine from '@/app/components/decorateLine/DecorateLine';
+import SubjectSelected from '@/app/projects/components/SubjectSelected';
+import CardBox from '@/app/projects/components/CardBox';
+import { SUBJECTS } from '@/app/projects/constants/subjectData';
+import { SUBJECT_IMAGES } from '@/app/projects/constants/subjectImages';
+import { SUBJECT_TEXTBOX_IMAGES } from '@/app/projects/constants/subjectTextboxImages';
 
 interface Project {
   id: number;
   title: string;
   name: string;
   thumbnail: string;
+  subject: string;
 }
 
 interface SubjectGroup {
@@ -14,42 +23,109 @@ interface SubjectGroup {
   projects: Project[];
 }
 
-async function getProjects(): Promise<SubjectGroup[]> {
-  const host = (await headers()).get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const baseUrl = `${protocol}://${host}`;
+const SUBJECT_TEXTBOX_TOP: Record<string, number> = {
+  'communication-design': 120,
+  'illustration-design': 0,
+  'video-design': 130,
+};
 
-  const res = await fetch(`${baseUrl}/api/projects`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to fetch project data');
-  return res.json();
-}
+const SUBJECT_MAPPING: Record<string, string> = {
+  'communication-design': '커뮤니케이션디자인',
+  'illustration-design': '일러스트레이션',
+  'video-design': '영상콘텐츠디자인',
+};
 
-export default async function ProjectsPage() {
-  const subjectGroups = await getProjects();
+export default function ProjectsPage() {
+  const router = useRouter();
+  const [selectedSubject, setSelectedSubject] = useState<string>('communication-design');
+  const [subjectGroups, setSubjectGroups] = useState<SubjectGroup[]>([]);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      const res = await fetch('/api/projects', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to fetch project data');
+      const data = await res.json();
+      setSubjectGroups(data);
+    }
+    fetchProjects();
+  }, []);
+
+  const selectedImage = SUBJECT_IMAGES[selectedSubject];
+  const selectedTextboxImage = SUBJECT_TEXTBOX_IMAGES[selectedSubject];
+  const selectedTextboxTop = SUBJECT_TEXTBOX_TOP[selectedSubject];
+  const selectedSubjectData = SUBJECTS.find((subject) => subject.id === selectedSubject);
+
+  const filteredProjects = subjectGroups
+    .filter((group) => group.subject === SUBJECT_MAPPING[selectedSubject])
+    .flatMap((group) => group.projects);
 
   return (
     <S.Container>
-      <h1>프로젝트 목록</h1>
-      {subjectGroups.map((group) => (
-        <div key={group.subject}>
-          <h2>{group.subject}</h2>
-          <ul>
-            {group.projects.map((project, idx) => (
-              <li key={idx}>
-                <div>
-                  <img src={project.thumbnail} alt={project.title} style={{ width: '200px', height: '200px' }} />
-                  <div>
-                    <p>
-                      <strong>{project.title}</strong>
-                    </p>
-                    <p>학생: {project.name}</p>
-                  </div>
-                </div>
-              </li>
+      <S.SubjectConatiner>
+        {SUBJECTS.map((subject) => (
+          <SubjectSelected
+            key={subject.id}
+            subject={subject}
+            selected={selectedSubject === subject.id}
+            onClick={() => setSelectedSubject(subject.id)}
+          />
+        ))}
+      </S.SubjectConatiner>
+
+      <S.SubjectImage
+        $pcSrc={selectedImage.pc}
+        $tabletSrc={selectedImage.tablet}
+        $mobileSrc={selectedImage.mobile}
+        alt="background"
+      />
+
+      <S.ContentContainer>
+        <DecorateLine />
+
+        <S.InnerContainer>
+          <S.ExplainConatiner>
+            <S.LeftContainer>
+              <S.SubjectNameContainer>
+                <S.SubjectBoldText>{selectedSubjectData?.subjectKor} 프로젝트</S.SubjectBoldText>
+                <S.SubjectText>{selectedSubjectData?.subjectEng}</S.SubjectText>
+              </S.SubjectNameContainer>
+              <S.SubjectText>{selectedSubjectData?.subjectProfessor} 교수</S.SubjectText>
+            </S.LeftContainer>
+
+            <S.RightContainer>
+              <S.ExplainText>
+                {selectedSubjectData?.subjectText.split('\n').map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    {index < selectedSubjectData.subjectText.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </S.ExplainText>
+            </S.RightContainer>
+          </S.ExplainConatiner>
+
+          <S.SubjectTextboxImage
+            $pcSrc={selectedTextboxImage.pc}
+            $tabletSrc={selectedTextboxImage.tablet}
+            $mobileSrc={selectedTextboxImage.mobile}
+            $top={selectedTextboxTop}
+            alt="background"
+          />
+
+          <S.CardBoxContainer>
+            {filteredProjects.map((project) => (
+              <CardBox
+                key={project.id}
+                id={project.id}
+                title={project.title}
+                name={project.name}
+                thumbnail={project.thumbnail}
+                onClick={() => router.push(`/projects/${project.id}`)}
+              />
             ))}
-          </ul>
-        </div>
-      ))}
+          </S.CardBoxContainer>
+        </S.InnerContainer>
+      </S.ContentContainer>
     </S.Container>
   );
 }
