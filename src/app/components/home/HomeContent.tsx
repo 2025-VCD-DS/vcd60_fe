@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 'use client';
 import dynamic from 'next/dynamic';
 import * as S from '@/app/pageStyle';
+import mainpatch from '@/assets/lottie/mainpatch.lottie.json';
 
 const LottiePlayer = dynamic(() => import('@/app/components/home/LottiePlayer'), { ssr: false });
 
@@ -10,7 +10,7 @@ export default function HomeContent() {
     <S.Container>
       <S.BackSign src="/assets/bg-sign-white.svg" alt="backgrond sign" />
       <S.WhiteContainer>
-        <LottiePlayer src={require('@/assets/lottie/mainpatch.lottie.json')} />
+        <LottiePlayer src={mainpatch} />
         <S.Logo src="/assets/logo-exh.svg" alt="The Rough Sketch on the Ground" />
         <S.LeftBox>
           DUKSUNG Women’s University
