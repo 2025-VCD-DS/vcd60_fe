@@ -41,6 +41,7 @@ const nextConfig: NextConfig = {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
 
     // 기존 SVG 로더 규칙 찾기
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const fileLoaderRule = config.module.rules.find((rule: any) => rule.test?.test?.('.svg'));
 
     config.module.rules.push(
@@ -73,8 +74,7 @@ const nextConfig: NextConfig = {
    * - output: "export" -> 정적 사이트용
    * - 필요에 따라 주석 해제 후 사용
    */
-  // output: "standalone",
-  // output: "export",
+  output: 'standalone',
 };
 
 export default nextConfig;
