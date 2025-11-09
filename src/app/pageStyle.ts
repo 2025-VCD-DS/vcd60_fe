@@ -2,7 +2,6 @@
 
 import styled from '@emotion/styled';
 import { media, theme } from '@/styles/theme';
-import { Player } from '@lottiefiles/react-lottie-player';
 import posterImg from '@/assets/image/img-main-poster.svg?url';
 
 export const Container = styled.div``;
@@ -45,20 +44,6 @@ export const Logo = styled.img`
   ${media.mobile} {
     top: 78px;
     left: 10px;
-  }
-`;
-
-export const LottiePlayerWrapper = styled(Player)`
-  width: 50%;
-  height: auto;
-  position: absolute;
-  top: 230px;
-  right: 60px;
-  pointer-events: none;
-
-  ${media.mobile} {
-    top: 80px;
-    right: 10px;
   }
 `;
 
