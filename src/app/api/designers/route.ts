@@ -50,7 +50,7 @@ interface CSVRecord {
 /**
  * GET 요청 핸들러
  *
- * CSV 파일(`src/data/test.csv`)을 읽어서 학번 기준으로 학생 정보를 그룹화하고
+ * CSV 파일(`src/data/data.csv`)을 읽어서 학번 기준으로 학생 정보를 그룹화하고
  * 각 학생의 작품을 배열로 묶어 JSON 형태로 반환합니다.
  *
  * @returns {NextResponse} - 학번별 학생 정보와 작품 배열을 포함한 JSON 응답
@@ -60,7 +60,7 @@ export async function GET() {
     const DEFAULT_PROFILE = '/profiles/default-profile.jpg';
 
     // CSV 파일 경로 지정
-    const filePath = path.join(process.cwd(), 'src/data/test.csv');
+    const filePath = path.join(process.cwd(), 'src/data/data.csv');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // CSV 파싱

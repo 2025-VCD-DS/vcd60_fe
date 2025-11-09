@@ -38,7 +38,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     }
 
     // CSV 파일 경로
-    const filePath = path.join(process.cwd(), 'src', 'data', 'test.csv');
+    const filePath = path.join(process.cwd(), 'src', 'data', 'data.csv');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // CSV 파싱

@@ -40,7 +40,7 @@ interface SubjectGroup {
 /**
  * GET 요청 핸들러
  *
- * CSV 파일(`src/data/test.csv`)을 읽어서 subject 값 기준으로 그룹화하고
+ * CSV 파일(`src/data/data.csv`)을 읽어서 subject 값 기준으로 그룹화하고
  * 각 subject마다 작품 배열을 묶어 JSON 형태로 반환합니다.
  *
  * @returns {NextResponse} - subject별 작품 배열을 포함한 JSON 응답
@@ -50,7 +50,7 @@ export async function GET() {
     const DEFAULT_WORK_IMG = '/works/default-work.jpg';
 
     // CSV 파일 경로
-    const filePath = path.join(process.cwd(), 'src/data/test.csv');
+    const filePath = path.join(process.cwd(), 'src/data/data.csv');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // CSV 파싱
