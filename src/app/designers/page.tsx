@@ -1,6 +1,12 @@
-import React from 'react';
-import { headers } from 'next/headers';
+'use client';
+
+import React, { useEffect, useState, useMemo } from 'react';
 import * as S from '@/app/designers/pageStyle';
+import { theme } from '@/styles/theme';
+import DecorateLine from '@/app/components/decorateLine/DecorateLine';
+import InitialBox from '@/app/designers/components/InitialBox';
+import DesignerCard from '@/app/designers/components/DesignerCard';
+import { INITIAL_CONSONANTS, getFirstInitialConsonant } from '@/app/designers/utils/koreanUtils';
 
 interface Project {
   id: number;
@@ -18,48 +24,82 @@ interface Designer {
   projects: Project[];
 }
 
-async function getDesigners(): Promise<Designer[]> {
-  const host = (await headers()).get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const baseUrl = `${protocol}://${host}`;
+export default function DesignersPage() {
+  const [designers, setDesigners] = useState<Designer[]>([]);
+  const [selectedInitial, setSelectedInitial] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const res = await fetch(`${baseUrl}/api/designers`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to fetch designer data');
-  return res.json();
-}
+  useEffect(() => {
+    const fetchDesigners = async () => {
+      try {
+        const res = await fetch('/api/designers');
+        if (!res.ok) throw new Error('Failed to fetch designer data');
+        const data = await res.json();
+        setDesigners(data);
+      } catch (error) {
+        console.error('Error fetching designers:', error);
+      }
+    };
 
-export default async function DesignersPage() {
-  const designers = await getDesigners();
+    fetchDesigners();
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= theme.breakpoints.mobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleInitialClick = (consonant: string) => {
+    setSelectedInitial(consonant);
+  };
+
+  const handleAllClick = () => {
+    setSelectedInitial(null);
+  };
+
+  // 선택된 초성에 맞는 디자이너 필터링
+  const filteredDesigners = useMemo(() => {
+    if (!selectedInitial) {
+      return designers;
+    }
+
+    return designers.filter((designer) => {
+      const firstInitial = getFirstInitialConsonant(designer.name);
+      return firstInitial === selectedInitial;
+    });
+  }, [designers, selectedInitial]);
 
   return (
     <S.Container>
-      <h1>디자이너 목록</h1>
-      <ul>
-        {designers.map((designer) => (
-          <li key={designer.studentId}>
-            <div>
-              <img src={designer.profile} alt={`${designer.name} 프로필`} style={{ width: '80px', height: '80px' }} />
-              <div>
-                <h2>{designer.name}</h2>
-                <p>이메일: {designer.email || '-'}</p>
-                <p>전화번호: {designer.phone || '-'}</p>
-              </div>
-            </div>
+      <S.ContentContainer>
+        <S.FilterContainer>
+          <InitialBox text={isMobile ? 'All' : 'All Designers'} onClick={handleAllClick} />
+          <S.RightContainer>
+            {INITIAL_CONSONANTS.map((consonant) => (
+              <InitialBox
+                key={consonant}
+                text={consonant}
+                selected={selectedInitial === consonant}
+                onClick={() => handleInitialClick(consonant)}
+              />
+            ))}
+          </S.RightContainer>
+        </S.FilterContainer>
 
-            <div>
-              <h3>🎨 작품</h3>
-              <ul>
-                {designer.projects.map((project, idx) => (
-                  <li key={idx}>
-                    <img src={project.thumbnail} alt={project.title} style={{ width: '300px', height: 'auto' }} />
-                    <p>{project.title}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ul>
+        <DecorateLine />
+
+        <S.DesginerListContainer>
+          {filteredDesigners.map((designer) => (
+            <DesignerCard key={designer.studentId} designer={designer} />
+          ))}
+        </S.DesginerListContainer>
+      </S.ContentContainer>
     </S.Container>
   );
 }
