@@ -14,6 +14,7 @@ export const Container = styled.div`
 
   ${media.tablet} {
     padding: 15px 0;
+    gap: 40px;
   }
 
   ${media.mobile} {
