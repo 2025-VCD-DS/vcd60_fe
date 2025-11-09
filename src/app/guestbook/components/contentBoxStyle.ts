@@ -22,7 +22,7 @@ export const Box = styled.div<{ isPrimary: boolean }>`
 
   border-radius: 2px;
   background-color: ${({ isPrimary }) => (isPrimary ? '#E4007F' : '#F19EC2')};
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 `;
 
 export const Name = styled.span`
@@ -87,5 +87,5 @@ export const Content = styled.div`
   font-weight: 600;
   line-height: 19.75px;
   letter-spacing: -0.494px;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 `;
