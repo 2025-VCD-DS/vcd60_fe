@@ -1,5 +1,8 @@
-import React from 'react';
-import { headers } from 'next/headers';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import DecorateLine from '@/app/components/decorateLine/DecorateLine';
 import * as S from '@/app/projects/[id]/pageStyle';
 
 interface Designer {
@@ -21,38 +24,59 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function ProjectDetailPage({ params }: PageProps) {
-  const { id } = await params;
+export default function ProjectDetailPage({ params }: PageProps) {
+  const router = useRouter();
+  const [project, setProject] = useState<ProjectDetail | null>(null);
+  const [id, setId] = useState<string>('');
 
-  // 현재 호스트 정보 가져오기
-  const host = (await headers()).get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const baseUrl = `${protocol}://${host}`;
+  useEffect(() => {
+    async function getParams() {
+      const resolvedParams = await params;
+      setId(resolvedParams.id);
+    }
+    getParams();
+  }, [params]);
 
-  // API 호출
-  const res = await fetch(`${baseUrl}/api/projects/${id}`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to fetch project data');
+  useEffect(() => {
+    if (!id) return;
 
-  const project: ProjectDetail = await res.json();
+    async function fetchProject() {
+      const res = await fetch(`/api/projects/${id}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to fetch project data');
+      const data: ProjectDetail = await res.json();
+      setProject(data);
+    }
+    fetchProject();
+  }, [id]);
+
+  if (!project) return null;
 
   return (
     <S.Container>
-      <h1>프로젝트 상세 페이지</h1>
-      <h2>{project.title}</h2>
-      <p>{project.content}</p>
+      <S.ContentContainer>
+        <S.HeaderContainer>
+          <S.BtnBack onClick={() => router.push('/projects')} />
+          <DecorateLine />
+        </S.HeaderContainer>
 
-      <img src={project.workImg} alt={project.title} style={{ width: '300px', height: 'auto' }} />
+        <S.InnerContainer>
+          <S.ProjectContainer>
+            <S.ProjectTitle>{project.title}</S.ProjectTitle>
+            <S.ProjectDesigner>{project.designer.name}</S.ProjectDesigner>
+            <S.ProjectContent>{project.content}</S.ProjectContent>
+          </S.ProjectContainer>
 
-      <div>
-        <img
-          src={project.designer.profile}
-          alt={`${project.designer.name} 프로필`}
-          style={{ width: '80px', height: '80px', borderRadius: '50%' }}
-        />
-        <h2>{project.designer.name}</h2>
-        <p>이메일: {project.designer.email || '-'}</p>
-        <p>전화번호: {project.designer.phone || '-'}</p>
-      </div>
+          <S.ProjectImg src={project.workImg} alt={project.title} />
+
+          <S.ProfileContainer>
+            <S.ProfileImage src={project.designer.profile} alt={`${project.designer.name} 프로필`} />
+            <S.DesignerName>{project.designer.name}</S.DesignerName>
+            <S.DesignerTitle>contact</S.DesignerTitle>
+            <S.DesignerContact>{project.designer.email || '-'}</S.DesignerContact>
+            <S.DesignerContact>{project.designer.phone || '-'}</S.DesignerContact>
+          </S.ProfileContainer>
+        </S.InnerContainer>
+      </S.ContentContainer>
     </S.Container>
   );
 }
