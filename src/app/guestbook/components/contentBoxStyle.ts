@@ -10,7 +10,7 @@ export const Box = styled.div<{ isPrimary: boolean }>`
 
   ${media.tablet} {
     width: clamp(250px, calc(400 * 100vw / 1024), 400px);
-    height: clamp(180px, calc(280 * 100vw / 1024), 280px);
+    height: clamp(240px, calc(280 * 100vw / 1024), 280px);
     padding: clamp(10px, calc(20 * 100vw / 1024), 20px) clamp(12px, calc(20 * 100vw / 1024), 20px);
   }
 

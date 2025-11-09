@@ -100,7 +100,7 @@ export const ListContainer = styled.div`
   }
 
   ${media.tablet} {
-    gap: 80px;
+    gap: 60px;
   }
 
   ${media.mobile} {
