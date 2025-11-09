@@ -9,17 +9,19 @@ import { parse } from 'csv-parse/sync';
  * @property {string} title - 작품 제목
  * @property {string} name - 학생 이름
  * @property {string} thumbnail - 작품 썸네일 이미지 URL
+ * @property {string} subject - 과목
  */
 interface Project {
   id: number;
   title: string;
   name: string;
   thumbnail: string;
+  subject: string;
 }
 
 /**
  * @typedef SubjectGroup
- * @property {string} subject - 전공/주제
+ * @property {string} subject - 과목
  * @property {Project[]} projects - 해당 주제에 속한 작품 리스트
  */
 interface SubjectGroup {
@@ -64,9 +66,10 @@ export async function GET() {
 
         acc[subject].projects.push({
           id: Number(cur['projectId']),
-          title: cur['project'],
+          title: cur['title'],
           name: cur['name'],
           thumbnail: cur['thumbnailImg'],
+          subject: cur['subject'],
         });
 
         return acc;
