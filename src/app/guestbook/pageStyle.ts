@@ -70,7 +70,7 @@ export const SearchContainer = styled.div`
       font-size: 14px;
     }
 
-    @media (max-width: 310px) {
+    @media (max-width: 327px) {
       width: 85%;
       font-size: 12px;
     }
@@ -95,7 +95,7 @@ export const SearchContainer = styled.div`
       font-size: 14px;
     }
 
-    @media (max-width: 310px) {
+    @media (max-width: 327px) {
       padding: 9px 11px;
       font-size: 12px;
     }
