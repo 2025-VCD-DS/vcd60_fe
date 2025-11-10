@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Providers from '@/app/providers/Provider';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import ClientLoader from '@/app/components/ClientLoader';
 
 export const metadata: Metadata = {
   title: 'DUKSUNG VCD 2025 졸업전시 | The Rough Sektch on the Ground',
@@ -24,9 +25,11 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <ClientLoader>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </ClientLoader>
         </Providers>
       </body>
     </html>
