@@ -4,19 +4,16 @@ import { media, theme } from '@/styles/theme';
 export const Box = styled.div<{ isPrimary: boolean }>`
   ${media.pc} {
     width: clamp(410px, calc(497 * 100vw / 1905), 497px);
-    height: clamp(260px, calc(327 * 100vw / 1905), 327px);
     padding: clamp(10px, calc(23 * 100vw / 1905), 23px) clamp(12px, calc(28 * 100vw / 1905), 28px);
   }
 
   ${media.tablet} {
     width: clamp(250px, calc(400 * 100vw / 1024), 400px);
-    height: clamp(240px, calc(280 * 100vw / 1024), 280px);
     padding: clamp(10px, calc(20 * 100vw / 1024), 20px) clamp(12px, calc(20 * 100vw / 1024), 20px);
   }
 
   ${media.mobile} {
     width: clamp(353px, calc(372 * 100vw / 767), 372px);
-    height: clamp(216px, calc(230 * 100vw / 767), 230px);
     padding: clamp(15px, calc(20 * 100vw / 767), 20px) clamp(12px, calc(20 * 100vw / 1024), 20px);
   }
 

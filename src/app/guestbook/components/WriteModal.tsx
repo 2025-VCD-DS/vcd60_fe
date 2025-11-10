@@ -6,6 +6,7 @@ import * as S from '@/app/guestbook/components/writeModalStyle';
 interface WriteModalProps {
   onClose: () => void;
   onSubmit: (author: string, recipient: string, content: string) => void;
+  isSubmitting?: boolean;
 }
 
 /**
@@ -18,6 +19,7 @@ interface WriteModalProps {
  *
  * @param {() => void} onClose - 모달 닫기 버튼 클릭 시 실행되는 콜백 함수
  * @param {(author: string, recipient: string, content: string) => void} onSubmit - 작성 완료 시 호출되는 콜백 함수
+ * @param {boolean} [isSubmitting] - 작성 중 상태 (중복 요청 방지를 위해 버튼 비활성화)
  *
  * @returns {JSX.Element} 방명록 작성 모달 UI를 렌더링합니다.
  *
@@ -26,6 +28,7 @@ interface WriteModalProps {
  * <WriteModal
  *   onClose={() => setIsModalOpen(false)}
  *   onSubmit={(author, recipient, content) => handleCreate(author, recipient, content)}
+ *   isSubmitting={isSubmitting}
  * />
  * ```
  *
@@ -34,10 +37,11 @@ interface WriteModalProps {
  * - 메시지(`content`)는 최대 150자까지만 입력이 가능합니다.
  * - 입력 제한은 `maxLength` 속성으로 처리되며, 입력값은 로컬 state로 관리됩니다.
  * - “등록하기” 버튼 클릭 시 `onSubmit`이 호출되고, “취소하기” 버튼 클릭 시 `onClose`가 호출됩니다.
+ * - 작성 중(`isSubmitting`) 상태일 때는 버튼이 비활성화됩니다.
  *
- * @author 목소연
+ * @autor 목소연
  */
-export default function WriteModal({ onClose, onSubmit }: WriteModalProps) {
+export default function WriteModal({ onClose, onSubmit, isSubmitting = false }: WriteModalProps) {
   const [author, setAuthor] = useState('');
   const [recipient, setRecipient] = useState('');
   const [content, setContent] = useState('');
@@ -56,6 +60,7 @@ export default function WriteModal({ onClose, onSubmit }: WriteModalProps) {
             placeholder="받는이 (최대 10자)"
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
+            disabled={isSubmitting}
           />
         </S.InputContainer>
         <textarea
@@ -63,6 +68,7 @@ export default function WriteModal({ onClose, onSubmit }: WriteModalProps) {
           placeholder="응원의 메시지를 작성해주세요 (150자 이내)"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          disabled={isSubmitting}
         />
         <S.InputContainer>
           <label>From. </label>
@@ -71,11 +77,16 @@ export default function WriteModal({ onClose, onSubmit }: WriteModalProps) {
             placeholder="작성자 (최대 10자)"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
+            disabled={isSubmitting}
           />
         </S.InputContainer>
         <S.ButtonContainer>
-          <button onClick={onClose}>취소하기</button>
-          <button onClick={handleSubmit}>등록하기</button>
+          <button onClick={onClose} disabled={isSubmitting}>
+            취소하기
+          </button>
+          <button onClick={handleSubmit} disabled={isSubmitting}>
+            등록하기
+          </button>
         </S.ButtonContainer>
       </S.ModalBox>
     </S.Overlay>
