@@ -26,6 +26,7 @@ export const Container = styled.div<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 300ms ease;
   z-index: 1000;
+  will-change: transform;
 
   @media (max-width: 280px) {
     width: 100%;
