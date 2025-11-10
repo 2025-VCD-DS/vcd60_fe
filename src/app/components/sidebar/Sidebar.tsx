@@ -44,7 +44,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <S.ShortcutItems>
             {SHORTCUT_ITEMS.map((item) => (
               <div key={item.path} onClick={handleShortcutClick}>
-                <Shortcut label={item.label} path={item.path} />
+                <Shortcut label={item.label} path={item.path} isSidebar />
               </div>
             ))}
           </S.ShortcutItems>
