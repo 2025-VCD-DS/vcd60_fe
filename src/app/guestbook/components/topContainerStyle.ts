@@ -51,6 +51,10 @@ export const Title = styled.div`
   ${media.mobile} {
     font-size: 40px;
   }
+
+  @media (max-width: 283px) {
+    font-size: 30px;
+  }
 `;
 
 export const SubTitle = styled.div`
@@ -73,6 +77,10 @@ export const SubTitle = styled.div`
     font-size: 20px;
     line-height: 28px;
     margin-bottom: 8px;
+  }
+
+  @media (max-width: 283px) {
+    font-size: 16px;
   }
 `;
 
@@ -111,6 +119,10 @@ export const Button = styled.div`
     padding: 5px 12px;
     margin-bottom: 18px;
     font-size: 14px;
+  }
+
+  @media (max-width: 283px) {
+    font-size: 12px;
   }
 `;
 
