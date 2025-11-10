@@ -1,9 +1,4 @@
 /**
- * 한글 초성 목록
- */
-export const INITIAL_CONSONANTS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-
-/**
  * 전체 한글 초성 목록 (쌍자음 포함)
  */
 const FULL_INITIAL_CONSONANTS = [

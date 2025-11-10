@@ -6,7 +6,7 @@ import { theme } from '@/styles/theme';
 import DecorateLine from '@/app/components/decorateLine/DecorateLine';
 import InitialBox from '@/app/designers/components/InitialBox';
 import DesignerCard from '@/app/designers/components/DesignerCard';
-import { INITIAL_CONSONANTS, getFirstInitialConsonant } from '@/app/designers/utils/koreanUtils';
+import { getFirstInitialConsonant } from '@/app/designers/utils/koreanUtils';
 
 interface Project {
   id: number;
@@ -63,6 +63,18 @@ export default function DesignersPage() {
     setSelectedInitial(null);
   };
 
+  // 디자이너가 있는 초성만 추출
+  const availableInitials = useMemo(() => {
+    const initialsSet = new Set<string>();
+    designers.forEach((designer) => {
+      const firstInitial = getFirstInitialConsonant(designer.name);
+      if (firstInitial) {
+        initialsSet.add(firstInitial);
+      }
+    });
+    return Array.from(initialsSet).sort();
+  }, [designers]);
+
   // 선택된 초성에 맞는 디자이너 필터링
   const filteredDesigners = useMemo(() => {
     if (!selectedInitial) {
@@ -81,7 +93,7 @@ export default function DesignersPage() {
         <S.FilterContainer>
           <InitialBox text={isMobile ? 'All' : 'All Designers'} onClick={handleAllClick} />
           <S.RightContainer>
-            {INITIAL_CONSONANTS.map((consonant) => (
+            {availableInitials.map((consonant) => (
               <InitialBox
                 key={consonant}
                 text={consonant}

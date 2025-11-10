@@ -4,18 +4,24 @@ import styled from '@emotion/styled';
 import { media, theme } from '@/styles/theme';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 260px - 84px);
   padding: 65px 90px;
 
   ${media.tablet} {
     padding: 50px 65px;
+    min-height: calc(100dvh - 173px - 64px);
   }
 
   ${media.mobile} {
     padding: 30px 20px;
+    min-height: calc(100dvh - 50px);
   }
 `;
 
 export const ContentContainer = styled.div`
+  flex: 1;
   background-color: ${theme.colors.white};
 `;
 
