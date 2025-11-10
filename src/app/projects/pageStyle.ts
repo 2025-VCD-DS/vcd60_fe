@@ -39,7 +39,7 @@ export const SubjectConatiner = styled.div`
 
 export const SubjectImage = styled.img<{ $pcSrc: string; $tabletSrc: string; $mobileSrc: string }>`
   position: absolute;
-  top: 3%;
+  top: 100px;
   right: 0;
   z-index: -1;
   transform: translateX(8%);
@@ -51,7 +51,7 @@ export const SubjectImage = styled.img<{ $pcSrc: string; $tabletSrc: string; $mo
   content: url(${(props) => props.$pcSrc});
 
   ${media.tablet} {
-    top: 2%;
+    top: 60px;
     transform: translateX(16%);
 
     width: 65vw;
@@ -59,7 +59,7 @@ export const SubjectImage = styled.img<{ $pcSrc: string; $tabletSrc: string; $mo
   }
 
   ${media.mobile} {
-    top: 2.5%;
+    top: 55px;
     transform: translateX(21%);
     opacity: 0.5;
 
