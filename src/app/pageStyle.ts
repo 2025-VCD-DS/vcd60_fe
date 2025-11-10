@@ -2,7 +2,6 @@
 
 import styled from '@emotion/styled';
 import { media, theme } from '@/styles/theme';
-import posterImg from '@/assets/image/img-main-poster.svg?url';
 
 export const Container = styled.div``;
 
@@ -295,6 +294,10 @@ export const Content = styled.div`
     .mobile-only {
       display: block;
     }
+  }
+
+  @media (max-width: 370px) {
+    font-size: 12px;
   }
 `;
 
