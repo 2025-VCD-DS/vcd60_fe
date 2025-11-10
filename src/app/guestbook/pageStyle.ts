@@ -45,13 +45,13 @@ export const SearchContainer = styled.div`
   }
 
   input {
-    flex: 1;
     background: none;
     border: none;
     color: ${theme.colors.white};
     font-family: Pretendard;
     font-size: 18px;
     font-weight: 400;
+    width: 85%;
 
     :focus {
       outline: none;
