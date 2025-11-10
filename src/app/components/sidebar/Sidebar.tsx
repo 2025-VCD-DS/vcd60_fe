@@ -36,7 +36,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
       <S.Overlay isOpen={isOpen} onClick={onClose} />
-      <S.Container isOpen={isOpen}>
+      <S.Container isOpen={isOpen} style={{ transform: isOpen ? 'translateX(0)' : 'translateX(100%)' }}>
         <S.TopContainer>
           <S.BtnClose onClick={onClose} />
         </S.TopContainer>
@@ -44,7 +44,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <S.ShortcutItems>
             {SHORTCUT_ITEMS.map((item) => (
               <div key={item.path} onClick={handleShortcutClick}>
-                <Shortcut label={item.label} path={item.path} />
+                <Shortcut label={item.label} path={item.path} isSidebar />
               </div>
             ))}
           </S.ShortcutItems>

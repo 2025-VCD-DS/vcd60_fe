@@ -99,8 +99,12 @@ const globalStyle = css`
 
   html,
   body {
-    height: 100%;
     background-color: #fff;
+    min-height: 100dvh;
+
+    @supports (-webkit-touch-callout: none) {
+      min-height: -webkit-fill-available;
+    }
   }
 
   a {

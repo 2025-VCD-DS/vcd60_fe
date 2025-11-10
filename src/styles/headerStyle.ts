@@ -5,7 +5,7 @@ import LgVcd from '@/assets/logo/logo-vcd.svg';
 import BtMenu from '@/assets/button/bt-menu.svg';
 
 export const Container = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
