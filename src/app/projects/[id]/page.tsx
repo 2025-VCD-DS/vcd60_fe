@@ -55,7 +55,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
     <S.Container>
       <S.ContentContainer>
         <S.HeaderContainer>
-          <S.BtnBack onClick={() => router.push('/projects')} />
+          <S.BtnBack onClick={() => router.back()} />
           <DecorateLine />
         </S.HeaderContainer>
 
