@@ -49,6 +49,14 @@ export const RightContainer = styled.div`
   overflow-x: scroll;
   gap: 13px;
 
+  /* 스크롤바 숨기기 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
   ${media.tablet} {
     gap: 9.5px;
   }
