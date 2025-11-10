@@ -35,6 +35,7 @@ export default function GuestbookPage() {
   const [guestbooks, setGuestbooks] = useState<GuestbookItem[]>([]);
   const [keyword, setKeyword] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 방명록 초기 조회
   const fetchGuestbooks = async () => {
@@ -63,6 +64,8 @@ export default function GuestbookPage() {
 
   // 방명록 작성
   const handleCreate = async (author: string, recipient: string, content: string) => {
+    if (isSubmitting) return;
+
     if (!author || !recipient || !content) return alert('모든 항목을 입력해주세요');
     if (author.length > 10 || recipient.length > 10) {
       alert('작성자와 받는이는 각각 10자 이내로 입력해주세요.');
@@ -72,12 +75,17 @@ export default function GuestbookPage() {
       alert('내용은 150자 이내로 입력해주세요.');
       return;
     }
+
     try {
+      setIsSubmitting(true);
       const newEntry = await createGuestbook({ author, recipient, content });
       setGuestbooks((prev) => [newEntry, ...prev]);
       setIsModalOpen(false);
     } catch (err) {
       console.error(err);
+      alert('방명록 작성 중 오류가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -113,7 +121,9 @@ export default function GuestbookPage() {
             guestbooks.map((gb, index) => <ContentBox key={gb.id} gb={gb} index={index} />)
           )}
         </S.ListContainer>
-        {isModalOpen && <WriteModal onClose={() => setIsModalOpen(false)} onSubmit={handleCreate} />}
+        {isModalOpen && (
+          <WriteModal onClose={() => setIsModalOpen(false)} onSubmit={handleCreate} isSubmitting={isSubmitting} />
+        )}
       </S.SubContainer>
     </S.Container>
   );
