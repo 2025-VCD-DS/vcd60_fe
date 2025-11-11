@@ -80,12 +80,14 @@ export default function DesignerCard({ designer }: DesignerCardProps) {
         />
         <S.RowContainer>
           <S.ProfileContainer>
-            <S.BoldText>Email</S.BoldText>
-            <S.BoldText>Phone</S.BoldText>
-          </S.ProfileContainer>
-          <S.ProfileContainer>
-            <S.RegularText>{designer.email || '-'}</S.RegularText>
-            <S.RegularText>{designer.phone || '-'}</S.RegularText>
+            <S.ProfileData>
+              <S.BoldText>Email</S.BoldText>
+              <S.RegularText>{designer.email || '-'}</S.RegularText>
+            </S.ProfileData>
+            <S.ProfileData>
+              <S.BoldText>Phone</S.BoldText>
+              <S.RegularText>{designer.phone || '-'}</S.RegularText>
+            </S.ProfileData>
           </S.ProfileContainer>
         </S.RowContainer>
       </S.LeftContainer>
