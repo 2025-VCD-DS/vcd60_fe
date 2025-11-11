@@ -4,6 +4,7 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ClientLoader from '@/app/components/ClientLoader';
 import ClearLocalStorageOnNavigate from '@/lib/ClearLocalStorageOnNavigate';
+import ScrollToTop from '@/lib/ScrollToTop';
 
 export const metadata: Metadata = {
   title: 'DUKSUNG VCD 2025 졸업전시 | The Rough Sektch on the Ground',
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Providers>
           <ClientLoader>
             <ClearLocalStorageOnNavigate />
+            <ScrollToTop />
             <Header />
             <main>{children}</main>
             <Footer />
