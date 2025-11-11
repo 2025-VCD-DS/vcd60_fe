@@ -82,8 +82,12 @@ export default function HomeContent() {
               <div>부위원장</div>
               <div>총무</div>
               <div>디자인팀</div>
+              <div>&nbsp;</div>
+              <div>&nbsp;</div>
               <div>영상팀</div>
+              <div>&nbsp;</div>
               <div>도록팀</div>
+              <div>&nbsp;</div>
               <div>홍보팀</div>
             </S.Position>
             <S.Person>

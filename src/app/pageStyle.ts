@@ -324,15 +324,6 @@ export const Position = styled.div`
   line-height: 55px;
   letter-spacing: -0.792px;
 
-  > div:nth-child(4) {
-    margin-bottom: calc((55 + 18) * 2px);
-  }
-
-  > div:nth-child(5),
-  > div:nth-child(6) {
-    margin-bottom: calc((55 + 18) * 1px);
-  }
-
   ${media.pc} {
     font-size: 30px;
   }
@@ -344,14 +335,6 @@ export const Position = styled.div`
   ${media.mobile} {
     font-size: 14px;
     line-height: unset;
-    > div:nth-child(4) {
-      margin-bottom: calc((16 + 18) * 2px);
-    }
-
-    > div:nth-child(5),
-    > div:nth-child(6) {
-      margin-bottom: calc((16 + 18) * 1px);
-    }
   }
 `;
 
