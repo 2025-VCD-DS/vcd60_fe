@@ -22,6 +22,7 @@ export const SearchContainer = styled.div`
   display: flex;
   gap: 8px;
   width: 100%;
+  justify-content: space-between;
   align-items: center;
   border-radius: 52px;
   background-color: ${theme.colors.gray};
