@@ -112,14 +112,23 @@ export const ProfileData = styled.div`
   flex-direction: row;
   ${media.pc} {
     gap: 20px;
+    > div:nth-child(1) {
+      min-width: 55.83px;
+    }
   }
 
   ${media.tablet} {
     gap: 15px;
+    > div:nth-child(1) {
+      min-width: 38.2px;
+    }
   }
 
   ${media.mobile} {
     gap: 12px;
+    > div:nth-child(1) {
+      min-width: 32.33px;
+    }
   }
 `;
 
