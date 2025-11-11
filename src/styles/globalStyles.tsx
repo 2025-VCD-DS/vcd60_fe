@@ -100,7 +100,8 @@ const globalStyle = css`
   html,
   body {
     background-color: #fff;
-    min-height: 100dvh;
+    height: 100dvh;
+    overflow-y: hidden;
 
     @supports (-webkit-touch-callout: none) {
       min-height: -webkit-fill-available;

@@ -14,7 +14,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <Container>
-          <Image
+          <BackgroundImage
             src={bgBackground}
             alt="background"
             fill
@@ -30,7 +30,17 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
 const Container = styled.div`
   position: relative;
-  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow-y: scroll;
+`;
+
+const BackgroundImage = styled(Image)`
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 0;
 `;
 
 const Overlay = styled.div`
