@@ -12,6 +12,14 @@ export const Container = styled.div`
   align-items: center;
   gap: 80px;
 
+  /* 스크롤바 숨기기 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
   ${media.tablet} {
     padding: 15px 0;
     gap: 40px;
@@ -62,9 +70,9 @@ export const ProfileImage = styled.div`
   aspect-ratio: 207 / 290;
   height: auto;
   background-color: ${theme.colors.subGray};
-  /* object-fit: cover; */
 
   ${media.mobile} {
+    min-width: 125px;
     width: 125px;
   }
 `;
@@ -109,7 +117,6 @@ export const BoldText = styled.div`
 
 export const RegularText = styled.div`
   font-weight: 300;
-  min-width: fit-content;
 `;
 
 export const MidContainer = styled.div`
@@ -195,7 +202,6 @@ export const ProjectImage = styled.div`
   aspect-ratio: 1 / 1;
   height: auto;
   background-color: ${theme.colors.subGray};
-  /* object-fit: cover; */
 `;
 
 export const ProjectName = styled.div`
