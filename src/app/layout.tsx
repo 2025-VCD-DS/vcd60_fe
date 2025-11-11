@@ -26,15 +26,15 @@ export default function RootLayout({
         <link rel="manifest" href="/favicons/site.webmanifest" />
       </head>
       <body>
-        <Providers>
-          <ClientLoader>
+        <ClientLoader>
+          <Providers>
             <ClearLocalStorageOnNavigate />
             <ScrollToTop />
             <Header />
             <main>{children}</main>
             <Footer />
-          </ClientLoader>
-        </Providers>
+          </Providers>
+        </ClientLoader>
       </body>
     </html>
   );
