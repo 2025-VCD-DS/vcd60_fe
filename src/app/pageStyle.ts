@@ -128,7 +128,7 @@ export const PosterBox = styled.div`
 `;
 
 export const PosterImage = styled.div`
-  background-image: url('/assets/img-main-poster.svg');
+  background-image: url('/assets/img-main-poster.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
