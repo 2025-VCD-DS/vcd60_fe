@@ -1,29 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import * as S from '@/app/pageStyle';
 import mainpatch from '@/assets/lottie/mainpatch.lottie.json';
+import poster from '@/assets/lottie/poster.lottie.json';
 
 const LottiePlayer = dynamic(() => import('@/app/components/home/LottiePlayer'), { ssr: false });
+const LottiePlayer2 = dynamic(() => import('@/app/components/home/LottiePlayer2'), { ssr: false });
 
 export default function HomeContent() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // 자동 재생 실패 시 fallback
-          video.muted = true;
-          video.play();
-        });
-      }
-    }
-  }, []);
-
   return (
     <S.Container>
       <S.BackSign src="/assets/bg-sign-white.svg" alt="backgrond sign" />
@@ -46,18 +31,7 @@ export default function HomeContent() {
           <strong>2025. 11. 13. — 11. 17.</strong>
         </S.RightBox>
         <S.PosterBox>
-          <S.VideoPlayerWrapper
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            webkit-playsinline="true"
-            x5-playsinline="true">
-            <source src="/assets/poster.mp4" type="video/mp4" />
-            브라우저가 동영상을 지원하지 않습니다.
-          </S.VideoPlayerWrapper>
+          <LottiePlayer2 src={poster} />
           <S.PosterImage />
         </S.PosterBox>
       </S.WhiteContainer>

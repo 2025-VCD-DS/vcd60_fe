@@ -127,32 +127,6 @@ export const PosterBox = styled.div`
   }
 `;
 
-export const VideoPlayerWrapper = styled.video`
-  display: block;
-  object-fit: cover;
-
-  ${media.pc} {
-    --poster-width: clamp(397px, 32vw, 611px);
-
-    width: var(--poster-width);
-    height: calc(var(--poster-width) * 1.414);
-  }
-
-  ${media.tablet} {
-    --poster-width: clamp(274px, 32vw, 396px);
-
-    width: var(--poster-width);
-    height: calc(var(--poster-width) * 1.414);
-  }
-
-  ${media.mobile} {
-    --poster-width: calc(304px + (568 - 304) * ((100vw - 344px) / (767 - 344)));
-
-    width: var(--poster-width);
-    height: calc(var(--poster-width) * 1.414);
-  }
-`;
-
 export const PosterImage = styled.div`
   background-image: url('/assets/img-main-poster.svg');
   background-size: cover;
