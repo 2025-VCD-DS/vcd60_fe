@@ -93,10 +93,10 @@ export default function HomeContent() {
               <div>양새연</div>
               <div>나윤서</div>
               <div>양소영</div>
-              <div>김려원</div>
+              <div>전아영</div>
               <div>조수연</div>
               <div>김연수</div>
-              <div>전아영</div>
+              <div>김려원</div>
               <div>전한나</div>
             </S.Person>
           </S.Credit>
