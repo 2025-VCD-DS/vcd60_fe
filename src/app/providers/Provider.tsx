@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { ThemeProvider } from '@emotion/react';
 import { media, theme } from '@/styles/theme';
 import EmotionRegistry from '@/lib/emotionRegistry';
@@ -9,18 +10,23 @@ import styled from '@emotion/styled';
 import bgBackground from '@/assets/background/bg-background.svg?url';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isGuestbook = pathname === '/guestbook';
+
   return (
     <EmotionRegistry>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <Container>
-          <BackgroundImage
-            src={bgBackground}
-            alt="background"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'top' }}
-            priority
-          />
+        <Container $isGuestbook={isGuestbook}>
+          {!isGuestbook && (
+            <BackgroundImage
+              src={bgBackground}
+              alt="background"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
+              priority
+            />
+          )}
           <Overlay>{children}</Overlay>
         </Container>
       </ThemeProvider>
@@ -28,10 +34,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   );
 }
 
-const Container = styled.div`
+const Container = styled.div<{ $isGuestbook: boolean }>`
   position: relative;
   max-height: 100dvh;
   overflow-y: scroll;
+  background-color: ${({ $isGuestbook }) => ($isGuestbook ? '#000' : 'transparent')};
 `;
 
 const BackgroundImage = styled(Image)`
