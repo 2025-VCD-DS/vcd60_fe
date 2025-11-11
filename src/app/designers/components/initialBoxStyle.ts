@@ -34,6 +34,6 @@ export const Container = styled.div<selectedProps>`
 
   ${media.mobile} {
     padding: 2px 3px;
-    font-size: 15px;
+    font-size: 18px;
   }
 `;
