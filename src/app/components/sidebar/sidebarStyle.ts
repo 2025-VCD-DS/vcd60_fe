@@ -20,12 +20,13 @@ export const Container = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
-  width: 280px;
+  width: 60%;
   height: 100dvh;
   background-color: ${theme.colors.black70};
   transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 300ms ease;
   z-index: 1000;
+  will-change: transform;
 
   @media (max-width: 280px) {
     width: 100%;
@@ -55,5 +56,5 @@ export const ShortcutItems = styled.div`
   padding: 5px 0;
   display: flex;
   flex-direction: column;
-  gap: 62.5px;
+  gap: 45px;
 `;

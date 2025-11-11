@@ -6,6 +6,7 @@ export const Container = styled.div`
   margin: 0 auto;
   font-family: 'Noto Sans KR', sans-serif;
   background-color: ${theme.colors.black};
+  min-height: 100dvh;
 `;
 
 export const SubContainer = styled.div`
@@ -44,13 +45,13 @@ export const SearchContainer = styled.div`
   }
 
   input {
-    flex: 1;
     background: none;
     border: none;
     color: ${theme.colors.white};
     font-family: Pretendard;
     font-size: 18px;
     font-weight: 400;
+    width: 85%;
 
     :focus {
       outline: none;
@@ -68,6 +69,11 @@ export const SearchContainer = styled.div`
     ${media.mobile} {
       font-size: 14px;
     }
+
+    @media (max-width: 327px) {
+      width: 85%;
+      font-size: 12px;
+    }
   }
 
   button {
@@ -83,9 +89,15 @@ export const SearchContainer = styled.div`
     font-weight: 500;
     line-height: 15px;
     letter-spacing: -0.494px;
+
     ${media.mobile} {
       padding: 9px 16px;
       font-size: 14px;
+    }
+
+    @media (max-width: 327px) {
+      padding: 9px 11px;
+      font-size: 12px;
     }
   }
 `;

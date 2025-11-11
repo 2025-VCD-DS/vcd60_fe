@@ -1,13 +1,22 @@
 import styled from '@emotion/styled';
 import { media, theme } from '@/styles/theme';
 
-export const Container = styled.div<{ $isActive: boolean }>`
+interface ShortcutProps {
+  $isActive?: boolean;
+  $isSidebar?: boolean;
+}
+
+export const FullContainer = styled.div<ShortcutProps>`
+  width: ${({ $isSidebar }) => ($isSidebar ? '100%' : 'fit-content')};
+  cursor: pointer;
+`;
+
+export const Container = styled.div<ShortcutProps>`
   width: fit-content;
   font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.48px;
-  cursor: pointer;
   transition: 300ms ease;
   color: ${theme.colors.white};
   background-color: ${({ $isActive }) => ($isActive ? theme.colors.primary : 'transparent')};

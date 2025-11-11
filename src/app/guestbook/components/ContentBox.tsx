@@ -35,12 +35,12 @@ export default function ContentBox({ gb, index }: ContentBoxProps) {
     <S.Box isPrimary={index % 2 === 0}>
       <S.Name>
         <S.Strong>To. </S.Strong>
-        {gb.author}
+        {gb.recipient}
       </S.Name>
       <S.Content>{gb.content}</S.Content>
       <S.Name>
         <S.Strong>From. </S.Strong>
-        {gb.recipient}
+        {gb.author}
       </S.Name>
     </S.Box>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeProvider } from '@emotion/react';
-import { theme } from '@/styles/theme';
+import { media, theme } from '@/styles/theme';
 import EmotionRegistry from '@/lib/emotionRegistry';
 import GlobalStyles from '@/styles/globalStyles';
 import Image from 'next/image';
@@ -36,4 +36,13 @@ const Container = styled.div`
 const Overlay = styled.div`
   position: relative;
   z-index: 1;
+  padding-top: 84px;
+
+  ${media.tablet} {
+    padding-top: 64px;
+  }
+
+  ${media.mobile} {
+    padding-top: 50px;
+  }
 `;

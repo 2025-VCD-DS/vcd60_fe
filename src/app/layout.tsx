@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Providers from '@/app/providers/Provider';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import ClientLoader from '@/app/components/ClientLoader';
 import ClearLocalStorageOnNavigate from '@/lib/ClearLocalStorageOnNavigate';
 
 export const metadata: Metadata = {
@@ -25,10 +26,12 @@ export default function RootLayout({
       </head>
       <body>
         <Providers>
-          <ClearLocalStorageOnNavigate />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <ClientLoader>
+            <ClearLocalStorageOnNavigate />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </ClientLoader>
         </Providers>
       </body>
     </html>

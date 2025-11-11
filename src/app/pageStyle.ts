@@ -2,7 +2,6 @@
 
 import styled from '@emotion/styled';
 import { media, theme } from '@/styles/theme';
-import posterImg from '@/assets/image/img-main-poster.svg?url';
 
 export const Container = styled.div``;
 
@@ -28,7 +27,7 @@ export const WhiteContainer = styled.div`
   }
 
   ${media.mobile} {
-    padding-top: clamp(264px, 264px + (1000 - 264) * ((100vw - 344px) / (767 - 344)), 448px);
+    padding-top: clamp(264px, calc(264px + (736 * ((100vw - 380px) / 423))), 390px);
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -155,7 +154,7 @@ export const VideoPlayerWrapper = styled.video`
 `;
 
 export const PosterImage = styled.div`
-  background-image: url(${posterImg});
+  background-image: url('/assets/img-main-poster.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -295,6 +294,10 @@ export const Content = styled.div`
     .mobile-only {
       display: block;
     }
+  }
+
+  @media (max-width: 370px) {
+    font-size: 12px;
   }
 `;
 
