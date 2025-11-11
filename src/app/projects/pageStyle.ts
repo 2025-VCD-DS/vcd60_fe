@@ -181,7 +181,7 @@ export const SubjectText = styled.div`
   }
 
   ${media.mobile} {
-    font-size: 12px;
+    font-size: 13px;
   }
 `;
 
@@ -198,7 +198,7 @@ export const ExplainText = styled.div`
   }
 
   ${media.mobile} {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 125%;
   }
 `;

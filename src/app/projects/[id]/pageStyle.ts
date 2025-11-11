@@ -48,7 +48,7 @@ export const BtnBack = styled(BtBack)`
   }
 
   ${media.mobile} {
-    width: 23px;
+    width: 30px;
   }
 `;
 

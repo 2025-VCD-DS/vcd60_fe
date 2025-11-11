@@ -93,16 +93,19 @@ export const RowContainer = styled.div`
 export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
 
   color: ${theme.colors.black};
   font-family: 'Pretendard';
   font-size: 19px;
 
   ${media.tablet} {
+    gap: 15px;
     font-size: 13px;
   }
 
   ${media.mobile} {
+    gap: 12px;
     font-size: 11px;
   }
 `;

@@ -51,12 +51,12 @@ export const Title = styled.div`
   letter-spacing: 2px;
 
   ${media.tablet} {
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 1.2px;
   }
 
   ${media.mobile} {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.6px;
   }
 `;
@@ -70,12 +70,12 @@ export const Name = styled.div`
   letter-spacing: -0.5px;
 
   ${media.tablet} {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: -0.35px;
   }
 
   ${media.mobile} {
-    font-size: 7.5px;
+    font-size: 11px;
     letter-spacing: -0.15px;
   }
 `;
