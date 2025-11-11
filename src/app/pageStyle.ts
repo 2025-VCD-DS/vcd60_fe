@@ -345,12 +345,12 @@ export const Position = styled.div`
     font-size: 14px;
     line-height: unset;
     > div:nth-child(4) {
-      margin-bottom: calc((19 + 18) * 2px);
+      margin-bottom: calc((16 + 18) * 2px);
     }
 
     > div:nth-child(5),
     > div:nth-child(6) {
-      margin-bottom: calc((19 + 18) * 1px);
+      margin-bottom: calc((16 + 18) * 1px);
     }
   }
 `;
