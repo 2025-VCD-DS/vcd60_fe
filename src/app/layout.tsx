@@ -7,7 +7,7 @@ import ClearLocalStorageOnNavigate from '@/lib/ClearLocalStorageOnNavigate';
 import ScrollToTop from '@/lib/ScrollToTop';
 
 export const metadata: Metadata = {
-  title: 'DUKSUNG VCD 2025 졸업전시 | The Rough Sektch on the Ground',
+  title: 'DUKSUNG VCD 2025 졸업전시 | The Rough Sketch on the Ground',
   description: '덕성여자대학교 시각디자인전공 제60회 졸업전시회',
 };
 
