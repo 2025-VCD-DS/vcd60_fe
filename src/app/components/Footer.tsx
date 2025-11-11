@@ -39,7 +39,7 @@ export default function Footer() {
           The 60th Graduation Exhibition
         </S.Text>
       </S.TopContainer>
-      <S.BottomContainer>OPEN | 2025.11.13</S.BottomContainer>
+      <S.BottomContainer>OPEN | 2025.11.12</S.BottomContainer>
     </S.Container>
   );
 }
