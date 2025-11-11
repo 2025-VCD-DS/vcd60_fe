@@ -26,7 +26,7 @@ export default function ClientLoader({ children }: { children: React.ReactNode }
           inset: 0,
           zIndex: 9999,
         }}>
-        <Lottie animationData={loadingAnimation} loop />
+        <Lottie animationData={loadingAnimation} loop style={{ maxWidth: '800px' }} />
       </div>
     );
   }
