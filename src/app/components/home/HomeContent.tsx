@@ -62,10 +62,10 @@ export default function HomeContent() {
             <br />
             <br /> 제60회 시각디자인전공 졸업전시회
             <br />
-            &lt;The Rough Sketch on the Ground <br className="mobile-only" />더 러프 스케치 온 더 그라운드&lt;는
+            &lt;The Rough Sketch on the Ground <br className="mobile-only" />더 러프 스케치 온 더 그라운드&gt;는
             <br />
             총 58명의 디자이너가 참여하는 전시로, <br className="mobile-only" />
-            일러스트레이션, 영상디자인, 커뮤니케이션디자인
+            커뮤니케이션디자인, 일러스트레이션, 영상디자인
             <br />
             세 가지 분야의 작품을 선보입니다.
             <br />
