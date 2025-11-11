@@ -17,6 +17,7 @@ interface ProjectDetail {
   title: string;
   content: string;
   workImg: string;
+  subject: string;
   designer: Designer;
 }
 
@@ -45,6 +46,10 @@ export default function ProjectDetailPage({ params }: PageProps) {
       if (!res.ok) throw new Error('Failed to fetch project data');
       const data: ProjectDetail = await res.json();
       setProject(data);
+      // subject를 localStorage에 저장
+      if (data.subject) {
+        localStorage.setItem('selectedSubject', data.subject);
+      }
     }
     fetchProject();
   }, [id]);

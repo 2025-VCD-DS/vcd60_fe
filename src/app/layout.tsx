@@ -3,6 +3,7 @@ import Providers from '@/app/providers/Provider';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ClientLoader from '@/app/components/ClientLoader';
+import ClearLocalStorageOnNavigate from '@/lib/ClearLocalStorageOnNavigate';
 
 export const metadata: Metadata = {
   title: 'DUKSUNG VCD 2025 졸업전시 | The Rough Sektch on the Ground',
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <ClientLoader>
+            <ClearLocalStorageOnNavigate />
             <Header />
             <main>{children}</main>
             <Footer />

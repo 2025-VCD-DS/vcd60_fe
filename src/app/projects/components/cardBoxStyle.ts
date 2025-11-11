@@ -6,8 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 26px;
 
-  width: calc(50% - 20px);
-  max-width: 380px;
+  width: calc(33% - 26px);
 
   cursor: pointer;
 

@@ -35,9 +35,28 @@ const SUBJECT_MAPPING: Record<string, string> = {
   'video-design': '영상콘텐츠디자인',
 };
 
+// 한글 subject를 영문 id로 변환
+const SUBJECT_KOR_TO_ENG: Record<string, string> = {
+  커뮤니케이션디자인: 'communication-design',
+  일러스트레이션: 'illustration-design',
+  영상콘텐츠디자인: 'video-design',
+};
+
 export default function ProjectsPage() {
   const router = useRouter();
-  const [selectedSubject, setSelectedSubject] = useState<string>('communication-design');
+  const [selectedSubject, setSelectedSubject] = useState<string>(() => {
+    // 클라이언트 환경에서만 localStorage 접근
+    if (typeof window !== 'undefined') {
+      const savedSubject = localStorage.getItem('selectedSubject');
+      if (savedSubject) {
+        // 적용 후 바로 삭제
+        localStorage.removeItem('selectedSubject');
+        // 한글로 저장된 subject를 영문 id로 변환
+        return SUBJECT_KOR_TO_ENG[savedSubject] || savedSubject;
+      }
+    }
+    return 'communication-design';
+  });
   const [subjectGroups, setSubjectGroups] = useState<SubjectGroup[]>([]);
 
   useEffect(() => {
