@@ -38,6 +38,13 @@ const Container = styled.div<{ $isGuestbook: boolean }>`
   position: relative;
   max-height: 100dvh;
   overflow-y: scroll;
+  /* 스크롤바 숨기기 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
   background-color: ${({ $isGuestbook }) => ($isGuestbook ? '#000' : 'transparent')};
 `;
 
