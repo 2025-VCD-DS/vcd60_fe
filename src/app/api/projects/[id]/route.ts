@@ -25,6 +25,7 @@ interface CSVRecord {
   title: string;
   content: string;
   workImg: string;
+  subject: string;
 }
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -71,6 +72,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       title: first.title,
       content: first.content,
       workImg: first.workImg,
+      subject: first.subject,
       designer,
     };
 
