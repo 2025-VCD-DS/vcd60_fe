@@ -31,13 +31,22 @@ interface ContentBoxProps {
  * @author 목소연
  */
 export default function ContentBox({ gb, index }: ContentBoxProps) {
+  const formattedContent = gb.content.split('\n');
+
   return (
     <S.Box isPrimary={index % 2 === 0}>
       <S.Name>
         <S.Strong>To. </S.Strong>
         {gb.recipient}
       </S.Name>
-      <S.Content>{gb.content}</S.Content>
+      <S.Content>
+        {formattedContent.map((line, i) => (
+          <React.Fragment key={i}>
+            {line}
+            {i !== formattedContent.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </S.Content>
       <S.Name>
         <S.Strong>From. </S.Strong>
         {gb.author}
