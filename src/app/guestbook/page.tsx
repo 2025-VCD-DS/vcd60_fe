@@ -1,17 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from '@/app/guestbook/pageStyle';
 import TopContainer from '@/app/guestbook/components/TopContainer';
 import ContentBox from '@/app/guestbook/components/ContentBox';
-import WriteModal from '@/app/guestbook/components/WriteModal';
-import {
-  getGuestbook,
-  searchGuestbook,
-  createGuestbook,
-  GuestbookItem,
-  GuestbookListResponse,
-} from '@/lib/api/guestbook';
+// import WriteModal from '@/app/guestbook/components/WriteModal';
+import { GuestbookItem } from '@/lib/api/guestbook';
+import guestbookData from '@/data/guestbook.json';
 
 /**
  * @component GuestbookPage
@@ -27,78 +22,98 @@ import {
  * @example
  * ```tsx
  * <GuestbookPage />
- * ```
+ *
+ * @note
+ * - 서버 중단 이후 방명록 작성 관련 기능 및 요소는 제거 및 주석 처리했습니다.
+ * - 서버 중단 이후 방명록 조회는 json 정적 데이터를 반영하도록 수정했습니다.
+ * - 서버 중단 이후 방명록 검색은 필터링 기능 함수를 추가 구현했습니다.
  *
  * @author 목소연
  */
 export default function GuestbookPage() {
-  const [guestbooks, setGuestbooks] = useState<GuestbookItem[]>([]);
+  const [guestbooks, setGuestbooks] = useState<GuestbookItem[]>(guestbookData);
   const [keyword, setKeyword] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 방명록 초기 조회
-  const fetchGuestbooks = async () => {
-    try {
-      const data: GuestbookListResponse = await getGuestbook();
-      setGuestbooks(data.guestbooks);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // // 방명록 초기 조회
+  // const fetchGuestbooks = async () => {
+  //   try {
+  //     const data: GuestbookListResponse = await getGuestbook();
+  //     setGuestbooks(data.guestbooks);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
-  // 검색
-  const handleSearch = async () => {
+  // // 검색
+  // const handleSearch = async () => {
+  //   if (!keyword.trim()) {
+  //     fetchGuestbooks();
+  //     return;
+  //   }
+
+  //   try {
+  //     const data: GuestbookListResponse = await searchGuestbook(keyword);
+  //     setGuestbooks(data.guestbooks);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
+  // // 방명록 작성
+  // const handleCreate = async (author: string, recipient: string, content: string) => {
+  //   if (isSubmitting) return;
+
+  //   if (!author || !recipient || !content) return alert('모든 항목을 입력해주세요');
+  //   if (author.length > 10 || recipient.length > 10) {
+  //     alert('작성자와 받는이는 각각 10자 이내로 입력해주세요.');
+  //     return;
+  //   }
+  //   if (content.length > 150) {
+  //     alert('내용은 150자 이내로 입력해주세요.');
+  //     return;
+  //   }
+
+  //   try {
+  //     setIsSubmitting(true);
+  //     const newEntry = await createGuestbook({ author, recipient, content });
+  //     setGuestbooks((prev) => [newEntry, ...prev]);
+  //     setIsModalOpen(false);
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert('방명록 작성 중 오류가 발생했습니다.');
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const load = async () => {
+  //     await fetchGuestbooks();
+  //   };
+  //   load();
+  // }, []);
+
+  // JSON 데이터 필터링 (검색)
+  const handleSearch = () => {
     if (!keyword.trim()) {
-      fetchGuestbooks();
+      setGuestbooks(guestbookData);
       return;
     }
 
-    try {
-      const data: GuestbookListResponse = await searchGuestbook(keyword);
-      setGuestbooks(data.guestbooks);
-    } catch (err) {
-      console.error(err);
-    }
+    const lowerKeyword = keyword.toLowerCase();
+
+    const filtered = guestbookData.filter((gb) =>
+      [gb.author, gb.recipient, gb.content].some((field) => field.toLowerCase().includes(lowerKeyword)),
+    );
+
+    setGuestbooks(filtered);
   };
-
-  // 방명록 작성
-  const handleCreate = async (author: string, recipient: string, content: string) => {
-    if (isSubmitting) return;
-
-    if (!author || !recipient || !content) return alert('모든 항목을 입력해주세요');
-    if (author.length > 10 || recipient.length > 10) {
-      alert('작성자와 받는이는 각각 10자 이내로 입력해주세요.');
-      return;
-    }
-    if (content.length > 150) {
-      alert('내용은 150자 이내로 입력해주세요.');
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-      const newEntry = await createGuestbook({ author, recipient, content });
-      setGuestbooks((prev) => [newEntry, ...prev]);
-      setIsModalOpen(false);
-    } catch (err) {
-      console.error(err);
-      alert('방명록 작성 중 오류가 발생했습니다.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  useEffect(() => {
-    const load = async () => {
-      await fetchGuestbooks();
-    };
-    load();
-  }, []);
 
   return (
     <S.Container>
-      <TopContainer onOpenModal={() => setIsModalOpen(true)} />
+      <TopContainer />
       <S.SubContainer>
         <S.SearchContainer>
           <input
@@ -121,9 +136,9 @@ export default function GuestbookPage() {
             guestbooks.map((gb, index) => <ContentBox key={gb.id} gb={gb} index={index} />)
           )}
         </S.ListContainer>
-        {isModalOpen && (
+        {/* {isModalOpen && (
           <WriteModal onClose={() => setIsModalOpen(false)} onSubmit={handleCreate} isSubmitting={isSubmitting} />
-        )}
+        )} */}
       </S.SubContainer>
     </S.Container>
   );

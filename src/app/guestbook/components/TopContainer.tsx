@@ -5,7 +5,7 @@ import * as S from '@/app/guestbook/components/topContainerStyle';
 import pcBg from '@/assets/image/1920-img-gestbook.svg?url';
 import tabletBg from '@/assets/image/1280-img-gestbook.svg?url';
 import mobileBg from '@/assets/image/360-img-gestbook.svg?url';
-import writeIc from '@/assets/icon/ic-write.svg?url';
+// import writeIc from '@/assets/icon/ic-write.svg?url';
 
 const breakpoints = {
   mobile: 767,
@@ -13,9 +13,9 @@ const breakpoints = {
   pc: 1024,
 };
 
-interface TopContainerProps {
-  onOpenModal: () => void;
-}
+// interface TopContainerProps {
+//   onOpenModal: () => void;
+// }
 
 /**
  * @component TopContainer
@@ -37,10 +37,11 @@ interface TopContainerProps {
  * @note
  * - PC, Tablet, Mobile 해상도에 따라 `pcBg`, `tabletBg`, `mobileBg` 배경 이미지가 자동으로 전환됩니다.
  * - `resize` 이벤트 리스너를 등록해, 창 크기가 변경될 때마다 즉시 반응형 처리를 수행합니다.
+ * - 서버 중단 이후 방명록 작성 관련 기능 및 요소는 제거 및 주석 처리했습니다.
  *
  * @author 목소연
  */
-export default function TopContainer({ onOpenModal }: TopContainerProps) {
+export default function TopContainer() {
   const [bgSrc, setBgSrc] = useState(pcBg);
 
   useEffect(() => {
@@ -67,9 +68,9 @@ export default function TopContainer({ onOpenModal }: TopContainerProps) {
         <S.Title>방명록</S.Title>
         <S.SubTitle>Guest Book</S.SubTitle>
       </S.TitleContainer>
-      <S.Button onClick={onOpenModal}>
+      {/* <S.Button onClick={onOpenModal}>
         <S.Icon src={writeIc} alt="write" />글 작성하기
-      </S.Button>
+      </S.Button> */}
       <S.Image src={bgSrc} alt="backgrond" />
     </S.TopContainer>
   );
